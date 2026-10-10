@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>杨帆 · AI应用与战略分析</title>
+<meta name="description" content="杨帆的个人主页：AI应用与战略分析专家，展示专业技能、项目经历与工作经验。">
+<style>
+  :root{
+    --bg:#ffffff;
+    --bg-soft:#f6f8fb;
+    --text:#1f2937;
+    --muted:#64748b;
+    --accent:#2563eb;        /* 👉 主色调，想换颜色改这里 */
+    --accent-strong:#1d4ed8;
+    --accent-soft:#eef4ff;
+    --border:#e5e9f0;
+    --radius:14px;
+    --maxw:920px;
+    --shadow:0 1px 2px rgba(16,24,40,.04),0 4px 16px rgba(16,24,40,.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    color:var(--text);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration:none}
+  a:hover{color:var(--accent-strong)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  /* 顶部导航 */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .topbar-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-weight:700;font-size:17px;color:var(--text)}
+  .brand span{color:var(--accent)}
+  .nav{display:flex;gap:4px;list-style:none}
+  .nav a{padding:8px 12px;border-radius:8px;color:var(--muted);font-size:15px;transition:.15s}
+  .nav a:hover{color:var(--accent);background:var(--accent-soft)}
+  .nav-toggle{display:none;background:none;border:none;color:var(--text);cursor:pointer}
+
+  /* 首屏 */
+  .hero{padding:64px 0 40px}
+  .hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
+  .avatar{width:96px;height:96px;border-radius:50%;background:var(--accent-soft);color:var(--accent-strong);font-size:36px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:var(--shadow)}
+  .name{font-size:40px;font-weight:800;letter-spacing:.5px}
+  .name .en{display:block;font-size:16px;font-weight:500;color:var(--muted);letter-spacing:1px;margin-top:4px}
+  .title{font-size:19px;font-weight:600;color:var(--accent);margin-top:10px}
+  .tagline{max-width:640px;color:var(--muted);margin-top:12px;font-size:16px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
+  .chip{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border:1px solid var(--border);border-radius:999px;color:var(--text);font-size:14px;background:#fff;transition:.15s}
+  .chip:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow)}
+  .chip svg{width:16px;height:16px;flex:none}
+
+  /* 区块 */
+  section{padding:48px 0;scroll-margin-top:70px}
+  section.alt{background:var(--bg-soft)}
+  .sec-head{margin-bottom:26px}
+  .sec-title{font-size:26px;font-weight:800;display:inline-block}
+  .sec-title::after{content:"";display:block;width:44px;height:4px;border-radius:2px;background:var(--accent);margin-top:8px}
+  .sec-desc{color:var(--muted);margin-top:8px;font-size:15px}
+
+  .about p{margin-bottom:12px}
+
+  /* 技能 */
+  .skill-group{margin-bottom:20px}
+  .skill-group h3{font-size:16px;font-weight:700;margin-bottom:10px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{background:var(--accent-soft);color:var(--accent-strong);padding:6px 12px;border-radius:999px;font-size:14px;font-weight:500}
+
+  /* 项目卡片 */
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px}
+  .card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);transition:.18s;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-3px);border-color:#c7d7f7}
+  .card h3{font-size:18px;font-weight:700;margin-bottom:6px}
+  .card .meta{color:var(--muted);font-size:13px;margin-bottom:10px}
+  .card p{font-size:14.5px;margin-bottom:14px;flex:1}
+  .card .stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .card .stack span{font-size:12.5px;color:var(--muted);background:var(--bg-soft);border:1px solid var(--border);padding:3px 9px;border-radius:6px}
+  .card .links{display:flex;gap:14px;font-size:14px}
+  .card .links a{display:inline-flex;align-items:center;gap:5px}
+  .card .links svg{width:14px;height:14px}
+
+  /* 时间线 */
+  .timeline{position:relative;padding-left:24px}
+  .timeline::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:var(--border)}
+  .tl-item{position:relative;padding:0 0 28px 18px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:-23px;top:6px;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--accent)}
+  .tl-item h3{font-size:17px;font-weight:700}
+  .tl-item .org{color:var(--accent);font-weight:600;font-size:15px}
+  .tl-item .period{color:var(--muted);font-size:13.5px;margin:2px 0 8px}
+  .tl-item ul{padding-left:18px;font-size:14.5px}
+  .tl-item li{margin-bottom:5px}
+
+  /* 荣誉 */
+  .honor-list{list-style:none}
+  .honor-list li{display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed var(--border);font-size:15px}
+  .honor-list li:last-child{border-bottom:none}
+  .honor-list .year{color:var(--muted);min-width:76px;font-weight:600}
+
+  /* 联系 */
+  .contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+  .contact-item{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius);background:#fff;color:var(--text);transition:.15s}
+  .contact-item:hover{border-color:var(--accent);color:var(--accent)}
+  .contact-item svg{width:18px;height:18px;flex:none}
+
+  footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;color:var(--muted);font-size:14px}
+  footer a{color:var(--muted)}
+  footer a:hover{color:var(--accent)}
+
+  @media (max-width:720px){
+    .nav{position:absolute;top:60px;left:0;right:0;flex-direction:column;background:#fff;border-bottom:1px solid var(--border);padding:8px 16px 14px;display:none}
+    .nav.open{display:flex}
+    .nav-toggle{display:inline-flex}
+    .name{font-size:32px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 顶部导航 ============ -->
+<nav class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#top">杨帆<span>.</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <ul class="nav" id="nav">
+      <li><a href="#about">关于</a></li>
+      <li><a href="#skills">技能</a></li>
+      <li><a href="#projects">项目</a></li>
+      <li><a href="#experience">经历</a></li>
+      <li><a href="#education">教育</a></li>
+      <li><a href="#contact">联系</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============ 首屏 ============ -->
+<header class="hero" id="top">
+  <div class="wrap hero-inner">
+    <img class="avatar" src="photo.jpg" alt="我的头像" style="object-fit:cover">
+    <h1 class="name">杨帆<span class="en">Yang Fan</span></h1>
+    <p class="title">AI应用与战略分析专家</p>
+    <p class="tagline">专注AI应用与数据科学应用，喜欢把复杂问题做成简单好用的产品。</p>
+    <div class="chips">
+      <a class="chip" href="mailto:yourname@example.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        feeney5287@126.com
+      </a>
+      <span class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        上海 / 可远程
+      </span>
+      <a class="chip" href="https://github.com/Yfpersistent" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
+      </a>
+      <a class="chip" href="https://www.linkedin.com/in/fan-yang-2621b0375" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        领英
+      </a>
+      <!-- <a class="chip" href="./resume.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        简历
+      </a> -->
+    </div>
+  </div>
+</header>
+
+<!-- ============ 关于我 ============ -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="sec-title">关于我</h2></div>
+    <div class="about">
+      <p>我是一名有 <strong>3 年经验</strong>的AI应用与战略分析专家，对AI应用很感兴趣，目前正在寻找相关方向的全职机会。</p>
+      <p>日常主要使用 <strong>Python + TensorFlow/PyTorch</strong>，喜欢把复杂问题拆成清晰的模块，关注模型性能、可解释性和实际应用效果。</p>
+      <p>除此之外，我会做一些开源小工具、写技术博客，保持持续学习的习惯。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 专业技能 ============ -->
+<section class="alt" id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">专业技能</h2>
+    </div>
+    <div class="skill-group">
+      <h3>编程语言</h3>
+      <div class="tags">
+        <span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">HTML / CSS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>框架与工具</h3>
+      <div class="tags">
+        <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Vue 3</span><span class="tag">Tailwind CSS</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Vite</span><span class="tag">Webpack</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>工程化与协作</h3>
+      <div class="tags">
+        <span class="tag">Git / GitHub</span><span class="tag">Docker</span><span class="tag">CI/CD</span><span class="tag">Jest / 单元测试</span><span class="tag">Figma</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 项目经历 ============ -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">项目经历</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>个人作品集网站</h3>
+        <div class="meta">独立开发 · 2026</div>
+        <p>响应式个人主页，纯 HTML/CSS/JS 实现，部署在 GitHub Pages，Lighthouse 性能评分 100。</p>
+        <div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span></div>
+        <div class="links">
+          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>代码</a>
+          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>在线预览</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>天气数据看板</h3>
+        <div class="meta">个人项目 · 2025</div>
+        <p>基于 React + ECharts 的可视化看板，支持城市切换与历史数据对比，日均处理数据 1 万+ 条。</p>
+        <div class="stack"><span>React</span><span>TypeScript</span><span>ECharts</span><span>Vite</span></div>
+        <div class="links">
+          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>代码</a>
+          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>在线预览</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>任务管理小工具</h3>
+        <div class="meta">个人项目 · 2024</div>
+        <p>Vue 3 + Pinia 的待办事项应用，支持拖拽排序、标签与本地持久化，UI 简洁易用。</p>
+        <div class="stack"><span>Vue 3</span><span>Pinia</span><span>localStorage</span></div>
+        <div class="links">
+          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>代码</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 工作经历 ============ -->
+<section class="alt" id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">工作经历</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <h3>AI研发项目经理</h3>
+        <div class="org">某国企分公司</div>
+        <div class="period">2023.8 – 至今 · 北京</div>
+        <ul>
+          <li>统筹集团“AI+”专项行动落地，推动投诉处理、办公自动化、网络优化等多类场景建设，多项场景纳入集团重点应用清单。</li>
+          <li>参与智能中台、智能体平台及人工智能实验室建设，支撑集团核心技术攻关项目，负责场景落地、成果申报与过程管理。</li>
+          <li>搭建自研项目全生命周期考核评价体系，构建量化评分与分级推荐机制，支撑优质项目遴选与推广。</li>
+          <li>牵头修订管理办法并建立科技创新季度通报机制，协同完成研发费用加计扣除与审计合规，提升项目管理规范性。</li>
+        </ul>
+      </div>
+      <!-- <div class="tl-item">
+        <h3>前端开发实习生</h3>
+        <div class="org">某互联网公司</div>
+        <div class="period">2022.07 – 2022.12 · 远程</div>
+        <ul>
+          <li>参与活动页与营销 H5 开发，累计上线 10+ 个页面，峰值 UV 20 万+。</li>
+          <li>通过懒加载与按需引入，使打包体积缩小 30%。</li>
+        </ul>
+      </div> -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 教育背景 ============ -->
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="sec-title">教育背景</h2></div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <h3>上海交通大学</h3>
+        <div class="org">数学科学学院 · 应用统计学 · 研究生</div>
+        <div class="period">2021.09 – 2023.06</div>
+        <ul>
+          <li>GPA 3.2 / 4.0。</li>
+          <li>师从XXX副教授。</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <h3>同济大学</h3>
+        <div class="org">经济与管理学院 · 会计学 · 本科</div>
+        <div class="period">2017.09 – 2021.06</div>
+        <ul>
+          <li>GPA 4.4 / 5.0，多次获校级奖学金。</li>
+          <li>师从XXX教授。</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 荣誉与证书（可整段删除） ============
+<section class="alt" id="honors">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="sec-title">荣誉与证书</h2></div>
+    <ul class="honor-list">
+      <li><span class="year">2018、2019</span>同济大学本科优秀学生优秀奖学金二等奖</li>
+      <li><span class="year">2019</span>全国大学生数学建模竞赛上海赛区三等奖</li>
+      <li><span class="year">2024</span>……（证书 / 奖项 / 开源贡献，都可放这里）</li>
+    </ul>
+  </div>
+</section> -->
+
+<!-- ============ 联系方式 ============ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">联系我</h2>
+      <p class="sec-desc">欢迎通过邮箱或社交平台联系，我通常会在 1–2 个工作日内回复。</p>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-item" href="mailto:feeney5287@126.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        feeney5287@126.com
+      </a>
+      <a class="contact-item" href="https://github.com/Yfpersistent" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
+      </a>
+      <a class="contact-item" href="https://www.linkedin.com/in/fan-yang-2621b0375">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        领英
+      </a>
+      <!-- <a class="contact-item" href="./resume.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        下载简历
+      </a> -->
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© <span id="year">2026</span> 杨帆 · 由 <a href="https://pages.github.com/">GitHub Pages</a> 托管 · 最后更新于 2026-10</p>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('nav');
+  toggle.addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
